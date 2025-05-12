@@ -114,21 +114,36 @@ class YahooFinanceAPI:
     
     def _validate_date(self, date_str: str, param_name: str) -> None:
         """
-        Validate a date string is in proper format
+        Validate a date string is in proper format and within reasonable bounds
         
         Args:
             date_str: Date string to validate
             param_name: Parameter name for error messages
             
         Raises:
-            InvalidInputError: If date format is invalid
+            InvalidInputError: If date format is invalid or date is unreasonable
         """
         if not date_str:
             raise InvalidInputError(f"{param_name} cannot be empty")
             
         try:
-            self.pd.to_datetime(date_str)
-        except Exception:
+            date = self.pd.to_datetime(date_str)
+            
+            # Check if date is too far in the past (before 1970)
+            if date.year < 1970:
+                raise InvalidInputError(f"{param_name} ({date_str}) is too far in the past. Must be after 1970.")
+            
+            # Check if date is in the future
+            today = datetime.now()
+            if date.date() > today.date():
+                raise InvalidInputError(
+                    f"{param_name} ({date_str}) is in the future. "
+                    f"Please use a date on or before {today.strftime('%Y-%m-%d')}"
+                )
+                
+        except Exception as e:
+            if isinstance(e, InvalidInputError):
+                raise e
             raise InvalidInputError(f"Invalid {param_name} format: '{date_str}'. Use 'YYYY-MM-DD' format.")
     
     def _validate_interval(self, interval: str, allowed_intervals: List[str]) -> None:
@@ -403,33 +418,66 @@ class YahooFinanceAPI:
         allowed_intervals = ['1d', '1wk', '1mo', '1m', '5m', '15m', '30m', '60m']
         self._validate_interval(interval, allowed_intervals)
         
+        # Convert dates to datetime objects for comparison
+        start = self.pd.to_datetime(start_date)
+        end = self.pd.to_datetime(end_date)
+        
         # Check if start_date is after end_date
-        if self.pd.to_datetime(start_date) > self.pd.to_datetime(end_date):
+        if start > end:
             raise InvalidInputError(f"Start date ({start_date}) must be before end date ({end_date})")
         
-        # Check if end_date is in the future
-        if self.pd.to_datetime(end_date) > self.pd.to_datetime(datetime.now()):
-            self.logger.warning(f"End date ({end_date}) is in the future, data might be incomplete")
+        # Adjust end date to today if it's in the future
+        today = datetime.now()
+        if end.date() > today.date():
+            self.logger.warning(
+                f"End date ({end_date}) is in the future. "
+                f"Adjusting to current date ({today.strftime('%Y-%m-%d')})"
+            )
+            end = today
+            end_date = end.strftime('%Y-%m-%d')
         
         self.logger.info(f"Fetching {interval} data for {symbol} from {start_date} to {end_date}")
         
-        # Download data
-        df = self.yf.download(
-            symbol, 
-            start=start_date, 
-            end=end_date, 
-            interval=interval, 
-            session=self.session,
-            progress=False
-        )
-        
-        if df.empty:
-            raise EmptyDataError(f"No data found for {symbol} from {start_date} to {end_date} with interval {interval}")
-        
-        # Process the dataframe to have a consistent format
-        df = self._process_dataframe(df, symbol)
-        
-        return df
+        try:
+            # Download data
+            df = self.yf.download(
+                symbol, 
+                start=start_date, 
+                end=end_date, 
+                interval=interval, 
+                session=self.session,
+                progress=False
+            )
+            
+            if df.empty:
+                # Try to determine if the symbol exists by fetching recent data
+                test_df = self.yf.download(
+                    symbol,
+                    period="5d",  # Just get recent data to test
+                    interval="1d",
+                    session=self.session,
+                    progress=False
+                )
+                
+                if test_df.empty:
+                    raise SymbolNotFoundError(f"Symbol '{symbol}' not found or may be delisted")
+                else:
+                    raise EmptyDataError(
+                        f"No data available for {symbol} from {start_date} to {end_date} "
+                        f"with interval {interval}. Try adjusting the date range or interval."
+                    )
+            
+            # Process the dataframe to have a consistent format
+            df = self._process_dataframe(df, symbol)
+            
+            return df
+            
+        except Exception as e:
+            if isinstance(e, (SymbolNotFoundError, EmptyDataError)):
+                raise e
+            if "not found" in str(e).lower() or "delisted" in str(e).lower():
+                raise SymbolNotFoundError(f"Symbol '{symbol}' not found or may be delisted")
+            raise DataFetchError(f"Error fetching data: {str(e)}")
 
     @_error_handler
     def search_symbols(self, keywords: str) -> Dict[str, Any]:
