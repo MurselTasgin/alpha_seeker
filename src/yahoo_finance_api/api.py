@@ -59,7 +59,7 @@ class YahooFinanceAPI:
             raise ImportError(f"Failed to import required packages after installation: {str(e)}")
 
         # Initialize session with impersonation if not provided
-        self.session = session or self.requests.Session(impersonate="chrome")
+        self.session = self.requests.Session(impersonate="chrome")
         self.timeout = timeout
         self.logger = logger
         
