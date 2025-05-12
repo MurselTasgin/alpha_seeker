@@ -1,3 +1,4 @@
+# plotting.py
 """
 Plotting utilities for Yahoo Finance API data visualization.
 """

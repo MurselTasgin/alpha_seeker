@@ -1,3 +1,4 @@
+# src/yahoo_finance_api/api.py
 """
 Main API implementation for Yahoo Finance.
 """
@@ -31,7 +32,8 @@ class YahooFinanceAPI:
     REQUIRED_PACKAGES = {
         'yfinance': 'yfinance',
         'pandas': 'pandas',
-        'curl_cffi': 'curl-cffi'
+        'curl_cffi': 'curl-cffi',
+        'plotly': 'plotly'
     }
     
     def __init__(self, session=None, timeout: int = 10):

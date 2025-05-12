@@ -1,3 +1,4 @@
+# src/yahoo_finance_api/exceptions.py
 """
 Custom exceptions for the Yahoo Finance API.
 """

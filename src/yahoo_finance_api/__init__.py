@@ -1,3 +1,4 @@
+# src/yahoo_finance_api/__init__.py
 """
 Yahoo Finance API wrapper with automatic dependency management.
 """

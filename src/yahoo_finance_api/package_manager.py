@@ -1,3 +1,4 @@
+# src/yahoo_finance_api/__init__.py
 """
 Package management utilities for the Yahoo Finance API.
 """
