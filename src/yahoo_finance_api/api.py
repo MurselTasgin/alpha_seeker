@@ -44,6 +44,10 @@ class YahooFinanceAPI:
         """
         # First ensure all required packages are installed
         PackageManager.ensure_packages(self.REQUIRED_PACKAGES)
+        
+        # Initialize plotting module
+        from yahoo_finance_api.plotting import StockPlotter
+        self.plotter = StockPlotter()
 
         # Now import the required packages
         try:
@@ -666,3 +670,144 @@ class YahooFinanceAPI:
         except Exception as e:
             self.logger.warning(f"Error formatting timestamp {timestamp}: {str(e)}")
             return str(timestamp)
+        
+
+    def plot_stock(self,
+                  symbol: str,
+                  start_date: Optional[str] = None,
+                  end_date: Optional[str] = None,
+                  interval: str = "1d",
+                  indicators: List[str] = None,
+                  volume: bool = True,
+                  show_grid: bool = True,
+                  theme: str = "light",
+                  width: int = 1200,
+                  height: int = 800) -> 'go.Figure':
+        """
+        Create an interactive stock chart with technical indicators.
+        
+        Args:
+            symbol: Stock ticker symbol
+            start_date: Start date in 'YYYY-MM-DD' format (optional)
+            end_date: End date in 'YYYY-MM-DD' format (optional)
+            interval: Time interval for data
+            indicators: List of indicators to show ('MA', 'BB', 'RSI', 'MACD')
+            volume: Whether to show volume
+            show_grid: Whether to show grid
+            theme: Chart theme ('light' or 'dark')
+            width: Chart width in pixels
+            height: Chart height in pixels
+            
+        Returns:
+            Plotly figure object
+        """
+        # Get the data
+        if start_date and end_date:
+            df = self.get_data_by_date_range(symbol, start_date, end_date, interval)
+        else:
+            df = self.get_daily_data(symbol)
+        
+        # Create the plot
+        fig = self.plotter.plot_candlestick(
+            df=df,
+            title=f"{symbol} Stock Price",
+            indicators=indicators,
+            volume=volume,
+            show_grid=show_grid,
+            theme=theme,
+            width=width,
+            height=height
+        )
+        
+        return fig
+
+    def plot_comparison(self,
+                       symbols: List[str],
+                       start_date: Optional[str] = None,
+                       end_date: Optional[str] = None,
+                       interval: str = "1d",
+                       normalize: bool = True,
+                       theme: str = "light",
+                       width: int = 1200,
+                       height: int = 600) -> 'go.Figure':
+        """
+        Create a comparison chart for multiple symbols.
+        
+        Args:
+            symbols: List of stock ticker symbols
+            start_date: Start date in 'YYYY-MM-DD' format (optional)
+            end_date: End date in 'YYYY-MM-DD' format (optional)
+            interval: Time interval for data
+            normalize: Whether to normalize prices to percentage change
+            theme: Chart theme ('light' or 'dark')
+            width: Chart width in pixels
+            height: Chart height in pixels
+            
+        Returns:
+            Plotly figure object
+        """
+        # Get data for all symbols
+        dfs = []
+        for symbol in symbols:
+            if start_date and end_date:
+                df = self.get_data_by_date_range(symbol, start_date, end_date, interval)
+            else:
+                df = self.get_daily_data(symbol)
+            dfs.append(df)
+        
+        # Create the comparison plot
+        fig = self.plotter.plot_comparison(
+            dfs=dfs,
+            symbols=symbols,
+            title="Price Comparison",
+            normalize=normalize,
+            theme=theme,
+            width=width,
+            height=height
+        )
+        
+        return fig
+
+    def plot_correlation_matrix(self,
+                              symbols: List[str],
+                              start_date: Optional[str] = None,
+                              end_date: Optional[str] = None,
+                              interval: str = "1d",
+                              theme: str = "light",
+                              width: int = 800,
+                              height: int = 800) -> 'go.Figure':
+        """
+        Create a correlation matrix heatmap for multiple symbols.
+        
+        Args:
+            symbols: List of stock ticker symbols
+            start_date: Start date in 'YYYY-MM-DD' format (optional)
+            end_date: End date in 'YYYY-MM-DD' format (optional)
+            interval: Time interval for data
+            theme: Chart theme ('light' or 'dark')
+            width: Chart width in pixels
+            height: Chart height in pixels
+            
+        Returns:
+            Plotly figure object
+        """
+        # Get data for all symbols
+        dfs = []
+        for symbol in symbols:
+            if start_date and end_date:
+                df = self.get_data_by_date_range(symbol, start_date, end_date, interval)
+            else:
+                df = self.get_daily_data(symbol)
+            dfs.append(df)
+        
+        # Create the correlation matrix
+        fig = self.plotter.plot_correlation_matrix(
+            dfs=dfs,
+            symbols=symbols,
+            title="Correlation Matrix",
+            theme=theme,
+            width=width,
+            height=height
+        )
+        
+        return fig
