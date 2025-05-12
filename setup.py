@@ -65,7 +65,7 @@ setup(
         
         # Financial calculations
         "empyrical>=0.5.5",  # Performance and risk metrics
-        "risk-kit>=1.0.0",   # Risk analysis tools
+        #"risk-kit>=1.0.0",   # Risk analysis tools
     ],
     extras_require={
         # Development dependencies
