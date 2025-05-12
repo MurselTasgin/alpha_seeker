@@ -28,7 +28,7 @@ setup(
     ],
     python_requires=">=3.7",
     install_requires=[
-        "yfinance>=0.2.0",
+        "yfinance==0.2.60",
         "pandas>=1.0.0",
         "curl-cffi>=0.5.0",
     ],
