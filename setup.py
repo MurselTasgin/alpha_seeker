@@ -35,7 +35,7 @@ setup(
         "scipy>=1.15.3",
         
         # Technical Analysis
-        "ta>=0.10.0",  # Technical analysis indicators
+        "ta>=0.11.0",  # Technical analysis indicators
         
         # Visualization
         "plotly>=5.0.0",
