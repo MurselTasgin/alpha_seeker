@@ -31,11 +31,11 @@ setup(
     install_requires=[
         # Core dependencies
         "yfinance==0.2.60",
-        "pandas>=1.0.0",
+        ###"pandas>=1.0.0",
         "curl-cffi>=0.5.0",
         
         # Data manipulation and analysis
-        "numpy>=1.20.0",
+        ### "numpy>=1.20.0",
         "scipy>=1.7.0",
         
         # Technical Analysis
@@ -52,7 +52,7 @@ setup(
         
         # Optimization
         "cvxopt>=1.3.0",  # For portfolio optimization
-        #"pypfopt>=1.4.1,<1.5.0",  # Portfolio optimization utilities
+        ###"pypfopt>=1.4.1,<1.5.0",  # Portfolio optimization utilities
         "PyPortfolioOpt>=1.4.1,<1.5.0",
         
         # Date and time handling
@@ -65,7 +65,7 @@ setup(
         
         # Financial calculations
         "empyrical>=0.5.5",  # Performance and risk metrics
-        #"risk-kit>=1.0.0",   # Risk analysis tools
+        ###"risk-kit>=1.0.0",   # Risk analysis tools
     ],
     extras_require={
         # Development dependencies
