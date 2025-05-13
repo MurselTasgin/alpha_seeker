@@ -49,7 +49,7 @@ setup(
         # Optimization
         "cvxopt>=1.3.0",  # For portfolio optimization
         ###"pypfopt>=1.4.1,<1.5.0",  # Portfolio optimization utilities
-        "PyPortfolioOpt>=1.4.1,<1.5.0",
+        "PyPortfolioOpt>=1.5.6",
         
         # Date and time handling
         "python-dateutil>=2.9.0",
