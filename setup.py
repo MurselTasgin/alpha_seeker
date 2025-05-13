@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="alpha_seeker",
-    version="0.1.0",
+    name="alphaseeker",
+    version="0.1.1",
     author="Mursel Tasgin",
     author_email="mursel.tasgin@gmail.com",
     description="A modern Stock and ETF analysis package with Yahoo Finance API wrapper with automatic dependency management",
