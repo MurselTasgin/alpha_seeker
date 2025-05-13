@@ -20,10 +20,6 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
     ],
@@ -32,7 +28,7 @@ setup(
         # Core dependencies
         "yfinance==0.2.60",
         "pandas>=2.2.2",
-        "curl-cffi>=0.5.0",
+        "curl-cffi>=0.10.0",
         
         # Data manipulation and analysis
         "numpy>=2.2.5",
@@ -43,12 +39,12 @@ setup(
         
         # Visualization
         "plotly>=5.0.0",
-        "matplotlib>=3.4.0",
-        "seaborn>=0.11.0",
+        "matplotlib>=3.10.3",
+        "seaborn>=0.13.0",
         
         # Statistics and Machine Learning
-        "statsmodels>=0.13.0",
-        "scikit-learn>=1.0.0",
+        "statsmodels>=0.14.4",
+        "scikit-learn>=1.6.0",
         
         # Optimization
         "cvxopt>=1.3.0",  # For portfolio optimization
@@ -56,12 +52,12 @@ setup(
         "PyPortfolioOpt>=1.4.1,<1.5.0",
         
         # Date and time handling
-        "python-dateutil>=2.8.0",
-        "pytz>=2021.1",
+        "python-dateutil>=2.9.0",
+        "pytz>=2025.2",
         
         # Progress bars and logging
-        "tqdm>=4.62.0",
-        "colorlog>=6.0.0",
+        "tqdm>=4.67.1",
+        "colorlog>=6.9.0",
         
         # Financial calculations
         "empyrical>=0.5.5",  # Performance and risk metrics
@@ -70,7 +66,7 @@ setup(
     extras_require={
         # Development dependencies
         "dev": [
-            "pytest>=7.0",
+            "pytest>=8.3",
             "pytest-cov>=4.0",
             "black>=22.0",
             "isort>=5.0",
