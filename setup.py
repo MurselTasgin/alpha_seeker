@@ -31,12 +31,12 @@ setup(
     install_requires=[
         # Core dependencies
         "yfinance==0.2.60",
-        ###"pandas>=1.0.0",
+        "pandas>=2.2.2",
         "curl-cffi>=0.5.0",
         
         # Data manipulation and analysis
-        ### "numpy>=1.20.0",
-        "scipy>=1.7.0",
+        "numpy>=2.2.5",
+        "scipy>=1.15.3",
         
         # Technical Analysis
         "ta>=0.10.0",  # Technical analysis indicators
