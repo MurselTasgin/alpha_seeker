@@ -63,50 +63,50 @@ setup(
         "empyrical>=0.5.5",  # Performance and risk metrics
         ###"risk-kit>=1.0.0",   # Risk analysis tools
     ],
-    extras_require={
-        # Development dependencies
-        "dev": [
-            "pytest>=8.3",
-            "pytest-cov>=6.1",
-            "black>=25.1",
-            "isort>=6.0",
-            "flake8>=7.2",
-            "mypy>=1.15.0",
-            "pylint>=3.3.7",
-        ],
+    # extras_require={
+    #     # Development dependencies
+    #     "dev": [
+    #         "pytest>=8.3",
+    #         "pytest-cov>=6.1",
+    #         "black>=25.1",
+    #         "isort>=6.0",
+    #         "flake8>=7.2",
+    #         "mypy>=1.15.0",
+    #         "pylint>=3.3.7",
+    #     ],
         
-        # Documentation dependencies
-        "docs": [
-            "sphinx>=8.2.3",
-            "sphinx-rtd-theme>=3.0.2",
-            "sphinx-autodoc-typehints>=3.2.0",
-            "nbsphinx>=0.9.7",
-        ],
+    #     # Documentation dependencies
+    #     "docs": [
+    #         "sphinx>=8.2.3",
+    #         "sphinx-rtd-theme>=3.0.2",
+    #         "sphinx-autodoc-typehints>=3.2.0",
+    #         "nbsphinx>=0.9.7",
+    #     ],
         
-        # Extra analysis tools
-        "analysis": [
-            "arch>=7.2.0",        # ARCH models for volatility
-            "pmdarima>=2.0.4",    # Auto ARIMA modeling
-            "prophet>=1.1.6",     # Facebook Prophet forecasting
-            "keras>=3.9.2",       # Deep learning support
-            "tensorflow>=2.19.0",   # Deep learning support
-        ],
+    #     # Extra analysis tools
+    #     "analysis": [
+    #         "arch>=7.2.0",        # ARCH models for volatility
+    #         "pmdarima>=2.0.4",    # Auto ARIMA modeling
+    #         "prophet>=1.1.6",     # Facebook Prophet forecasting
+    #         "keras>=3.9.2",       # Deep learning support
+    #         "tensorflow>=2.19.0",   # Deep learning support
+    #     ],
         
-        # Extra optimization tools
-        "optimize": [
-            "pulp>=3.1.1",        # Linear programming
-            "pyomo>=6.9.2",       # Optimization modeling
-            "gekko>=1.3.0",       # Advanced optimization
-        ],
+    #     # Extra optimization tools
+    #     "optimize": [
+    #         "pulp>=3.1.1",        # Linear programming
+    #         "pyomo>=6.9.2",       # Optimization modeling
+    #         "gekko>=1.3.0",       # Advanced optimization
+    #     ],
         
-        # Data acquisition extras
-        "data": [
-            "pandas-datareader>=0.10.0",  # Additional data sources
-            "alpha_vantage>=3.0.0",       # Alpha Vantage API
-            "finnhub-python>=2.4.23",      # Finnhub API
-            "polygon-api-client>=1.14.5",   # Polygon.io API
-        ],
-    },
+    #     # Data acquisition extras
+    #     "data": [
+    #         "pandas-datareader>=0.10.0",  # Additional data sources
+    #         "alpha_vantage>=3.0.0",       # Alpha Vantage API
+    #         "finnhub-python>=2.4.23",      # Finnhub API
+    #         "polygon-api-client>=1.14.5",   # Polygon.io API
+    #     ],
+    # },
     project_urls={
         "Bug Tracker": "https://github.com/MurselTasgin/alpha_seeker/issues",
         "Documentation": "https://alpha-seeker.readthedocs.io/",
