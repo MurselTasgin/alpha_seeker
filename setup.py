@@ -67,45 +67,44 @@ setup(
         # Development dependencies
         "dev": [
             "pytest>=8.3",
-            "pytest-cov>=4.0",
-            "black>=22.0",
-            "isort>=5.0",
-            "flake8>=4.0",
-            "mypy>=0.910",
-            "pylint>=2.10.0",
-            "jupyter>=1.0.0",
+            "pytest-cov>=6.1",
+            "black>=25.1",
+            "isort>=6.0",
+            "flake8>=7.2",
+            "mypy>=1.15.0",
+            "pylint>=3.3.7",
         ],
         
         # Documentation dependencies
         "docs": [
-            "sphinx>=4.0.0",
-            "sphinx-rtd-theme>=1.0.0",
-            "sphinx-autodoc-typehints>=1.12.0",
-            "nbsphinx>=0.8.0",
+            "sphinx>=8.2.3",
+            "sphinx-rtd-theme>=3.0.2",
+            "sphinx-autodoc-typehints>=3.2.0",
+            "nbsphinx>=0.9.7",
         ],
         
         # Extra analysis tools
         "analysis": [
-            "arch>=5.0.0",        # ARCH models for volatility
-            "pmdarima>=2.0.0",    # Auto ARIMA modeling
-            "prophet>=1.1.0",     # Facebook Prophet forecasting
-            "keras>=2.6.0",       # Deep learning support
-            "tensorflow>=2.6.0",   # Deep learning support
+            "arch>=7.2.0",        # ARCH models for volatility
+            "pmdarima>=2.0.4",    # Auto ARIMA modeling
+            "prophet>=1.1.6",     # Facebook Prophet forecasting
+            "keras>=3.9.2",       # Deep learning support
+            "tensorflow>=2.19.0",   # Deep learning support
         ],
         
         # Extra optimization tools
         "optimize": [
-            "pulp>=2.5.0",        # Linear programming
-            "pyomo>=6.1.0",       # Optimization modeling
-            "gekko>=1.0.0",       # Advanced optimization
+            "pulp>=3.1.1",        # Linear programming
+            "pyomo>=6.9.2",       # Optimization modeling
+            "gekko>=1.3.0",       # Advanced optimization
         ],
         
         # Data acquisition extras
         "data": [
             "pandas-datareader>=0.10.0",  # Additional data sources
-            "alpha_vantage>=2.3.1",       # Alpha Vantage API
-            "finnhub-python>=2.4.0",      # Finnhub API
-            "polygon-api-client>=1.0.0",   # Polygon.io API
+            "alpha_vantage>=3.0.0",       # Alpha Vantage API
+            "finnhub-python>=2.4.23",      # Finnhub API
+            "polygon-api-client>=1.14.5",   # Polygon.io API
         ],
     },
     project_urls={
