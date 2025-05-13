@@ -13,8 +13,8 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/MurselTasgin/alpha_seeker",
-    packages=find_packages(where="src"),
-    package_dir={"": "src"},
+    packages=find_packages(where="alpha_seeker"),
+    package_dir={"": "alpha_seeker"},
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

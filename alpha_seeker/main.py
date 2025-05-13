@@ -1,4 +1,4 @@
-from yahoofinance_api import YahooFinanceAPI
+from data_providers.yahoo_finance_api import YahooFinanceAPI
 
 my_dataAPI = YahooFinanceAPI()
 
